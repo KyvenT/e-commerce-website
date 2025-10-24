@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Card } from "./ui/card";
+import { StoreProductBtn } from "./StoreProduct";
+import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 export type StoreProduct = {
   id: number;
@@ -37,13 +38,16 @@ export const Store = () => {
   return (
     <div>
       <h2>Store</h2>
-      {items.map((item) => (
-        <li>
-          <Card>
-            <h4>{item.title}</h4>
-          </Card>
-        </li>
-      ))}
+      <ScrollArea className="w-full whitespace-nowrap">
+        <ul className="flex w-max h-[300px]">
+          {items.map((item) => (
+            <li>
+              <StoreProductBtn item={item} />
+            </li>
+          ))}
+        </ul>
+        <ScrollBar orientation="horizontal" />
+      </ScrollArea>
     </div>
   );
 };
