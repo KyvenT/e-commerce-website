@@ -1,5 +1,5 @@
 import { NavLink } from "react-router";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 function Landing() {
   return (
