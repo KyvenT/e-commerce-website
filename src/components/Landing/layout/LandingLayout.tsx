@@ -5,7 +5,9 @@ export const LandingLayout = () => {
   return (
     <div className="h-full">
       <LandingNav />
-      <Outlet />
+      <div className="h-[90%]">
+        <Outlet />
+      </div>
     </div>
   );
 };
