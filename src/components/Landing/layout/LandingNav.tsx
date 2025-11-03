@@ -10,7 +10,7 @@ type DisplayURL = {
 
 const linkURLs: DisplayURL[] = [
   { display: "Our Brand", url: "" },
-  { display: "Store", url: "/shop" },
+  { display: "Store", url: "/store" },
   { display: "Contact Us", url: "/contact-us" },
 ];
 
