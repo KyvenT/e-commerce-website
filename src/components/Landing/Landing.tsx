@@ -2,8 +2,8 @@ import { Button } from "../ui/button";
 
 function Landing() {
   return (
-    <div className="h-full flex flex-col sm:flex-row">
-      <section className="flex-1 flex justify-center items-center border border-black py-16">
+    <div className="h-fit flex flex-col md:flex-row">
+      <section className="h-fit min-h-[90dvh] flex-1 flex justify-center items-center border border-black py-16">
         <div className="w-[70%] flex flex-col gap-2">
           <h1 className="text-4xl font-medium">CAT BRAND</h1>
           <p>

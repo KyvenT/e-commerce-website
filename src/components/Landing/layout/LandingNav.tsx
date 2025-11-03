@@ -16,12 +16,12 @@ const linkURLs: DisplayURL[] = [
 
 export const LandingNav = () => {
   return (
-    <nav className="sticky top-0 h-[10%] flex justify-between items-center px-4 py-4 bg-white border border-black text-nowrap">
+    <nav className="sticky top-0 h-[15%] md:h-[10%] flex justify-between items-center px-4 py-4 bg-white border border-black text-nowrap">
       <div className="flex items-center gap-1 select-none">
         <Cat className="text-white bg-black" />
         <h1 className="text-lg">Cat Brand</h1>
       </div>
-      <ul className="w-[50%] flex items-center justify-evenly">
+      <ul className="w-[50%] flex items-center justify-evenly wrap-normal">
         {linkURLs.map((link) => (
           <li>
             <h2 className="hover:underline decoration-1">
