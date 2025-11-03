@@ -4,7 +4,7 @@ import { Store } from "../components/Store/Store";
 import { CartPage } from "@/components/Cart/Cart";
 import { Login } from "../components/Login/Login";
 import { LandingLayout } from "@/components/Landing/layout/LandingLayout";
-import { AboutUs } from "@/components/Landing/AboutUs";
+import { ContactUs } from "@/components/Landing/ContactUs";
 
 export const Router = () => {
   return (
@@ -12,9 +12,9 @@ export const Router = () => {
       <Routes>
         <Route element={<LandingLayout />}>
           <Route index element={<Landing />} />
-          <Route path="about-us" element={<AboutUs />} />
+          <Route path="contact-us" element={<ContactUs />} />
         </Route>
-        <Route path="shop" element={<Store />} />
+        <Route path="store" element={<Store />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="login" element={<Login />} />
       </Routes>

@@ -3,9 +3,11 @@ import { LandingNav } from "./LandingNav";
 
 export const LandingLayout = () => {
   return (
-    <div className="flex flex-col h-full">
+    <div className="h-full">
       <LandingNav />
-      <Outlet />
+      <div className="h-[90%]">
+        <Outlet />
+      </div>
     </div>
   );
 };
