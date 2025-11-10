@@ -1,44 +1,87 @@
 import { Eye, EyeClosed } from "lucide-react";
 import { Button } from "../ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { Spinner } from "../ui/shadcn-io/spinner";
 
 export const Login = () => {
   const [isShowingPassword, setIsShowingPassword] = useState<boolean>(false);
+  const [loginError, setLoginError] = useState<string | null>(null);
+  const [loginLoading, setLoginLoading] = useState<boolean>(false);
+  const usernameInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
 
   const handleShowPasswordClick = () => {
     setIsShowingPassword((prev) => !prev);
   };
 
+  const handleLogin = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    const username = usernameInputRef.current?.value;
+    const password = passwordInputRef.current?.value;
+
+    try {
+      const data = await fetch("https://fakestoreapi.com/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+      console.log(data);
+      if (!data.ok) {
+        throw new Error(await data.text());
+      }
+      const result = await data.json();
+      console.log(result.token);
+    } catch (err) {
+      if (err instanceof Error) setLoginError(err.message);
+    } finally {
+      setLoginLoading(false);
+    }
+  };
+
   return (
     <div className="h-full flex justify-center items-center">
-      <div className="border w-[25%] h-[50%] flex flex-col items-center gap-[16px]">
+      <div className="border w-[25%] h-fit py-[16px] flex flex-col items-center gap-[16px]">
         <h1 className="text-2xl py-[20px]">Login</h1>
-        <input
-          className="w-[60%] border border-gray-400 rounded-xs px-2 py-1 placeholder:text-gray-500"
-          type="text"
-          placeholder="Username..."
-        />
-        <div className="w-[60%] flex items-center border border-gray-400 rounded-xs px-2 py-1">
+        <form
+          onSubmit={handleLogin}
+          className="flex flex-col items-center gap-[16px]"
+        >
           <input
-            className="flex-1 placeholder:text-gray-500 p-[0] outline-none"
-            {...(isShowingPassword ? { type: "text" } : { type: "password" })}
-            placeholder="Password..."
+            className="w-[80%] border border-gray-400 rounded-xs px-2 py-1 placeholder:text-gray-500"
+            type="text"
+            placeholder="Username..."
+            ref={usernameInputRef}
           />
-          <Button
-            className="w-fit h-fit hover:bg-transparent hover:text-gray-500 active:text-gray-200 bg-transparent text-black"
-            onClick={handleShowPasswordClick}
-          >
-            {isShowingPassword ? (
-              <Eye size="1rem" />
-            ) : (
-              <EyeClosed size="1rem" />
-            )}
+          <div className="w-[80%] flex items-center border border-gray-400 rounded-xs px-2 py-1">
+            <input
+              className="flex-1 placeholder:text-gray-500 p-[0] outline-none"
+              {...(isShowingPassword ? { type: "text" } : { type: "password" })}
+              placeholder="Password..."
+              ref={passwordInputRef}
+            />
+            <Button
+              className="w-fit h-fit cursor-pointer hover:bg-transparent hover:text-gray-500 active:text-gray-200 bg-transparent text-black"
+              onClick={handleShowPasswordClick}
+              type="button"
+            >
+              {isShowingPassword ? (
+                <Eye size="1rem" />
+              ) : (
+                <EyeClosed size="1rem" />
+              )}
+            </Button>
+          </div>
+          <Button type="submit" className="cursor-pointer active:bg-gray-600">
+            Login
           </Button>
-        </div>
-        <Button className="active:bg-gray-600">Login</Button>
+        </form>
         <p>
-          Not a member? <a className="text-[blue] hover:underline">Register</a>
+          Not a member?{" "}
+          <a className="text-[blue] cursor-pointer hover:underline">Register</a>
         </p>
+        {loginLoading && <Spinner />}
+        {loginError && <span className="text-[red]">{loginError}</span>}
       </div>
     </div>
   );
