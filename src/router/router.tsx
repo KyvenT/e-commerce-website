@@ -5,6 +5,7 @@ import { CartPage } from "@/components/Cart/Cart";
 import { Login } from "../components/Login/Login";
 import { LandingLayout } from "@/components/Landing/layout/LandingLayout";
 import { ContactUs } from "@/components/Landing/ContactUs";
+import { ProductPage } from "@/components/Product/ProductPage";
 
 export const Router = () => {
   return (
@@ -17,6 +18,7 @@ export const Router = () => {
         <Route path="store" element={<Store />} />
         <Route path="cart" element={<CartPage />} />
         <Route path="login" element={<Login />} />
+        <Route path=":productId" element={<ProductPage />} />
       </Routes>
     </BrowserRouter>
   );
