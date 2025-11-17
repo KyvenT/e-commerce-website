@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { Spinner } from "../ui/shadcn-io/spinner";
 
 type Product = {
   id: number;
@@ -14,7 +15,7 @@ export const ProductPage = () => {
   const { productId } = useParams();
   const [productData, setData] = useState<Product | null>(null);
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [isError, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -39,9 +40,20 @@ export const ProductPage = () => {
 
   return (
     <div className="h-full">
-      <h1>
-        Product {productId} {productData?.title}
-      </h1>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          <h1>
+            Product {productId} {productData?.title}
+          </h1>
+          <h3>{productData?.category}</h3>
+          <h2>{productData?.price}</h2>
+          <p>{productData?.description}</p>
+          <img src={productData?.image}></img>
+        </>
+      )}
+      {error && <h1>{error}</h1>}
       <p></p>
     </div>
   );
