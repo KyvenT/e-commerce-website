@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { StoreProductBtn } from "./StoreProduct";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { Spinner } from "../ui/shadcn-io/spinner";
+import { Link } from "react-router";
 
 export type StoreProduct = {
   id: number;
@@ -50,7 +51,9 @@ export const Store = () => {
           <ul className="flex w-max h-[300px]">
             {items.map((item) => (
               <li>
-                <StoreProductBtn item={item} />
+                <Link to={`/store/${item.id}`}>
+                  <StoreProductBtn item={item} />
+                </Link>
               </li>
             ))}
           </ul>
