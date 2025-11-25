@@ -38,8 +38,15 @@ export const ProductPage = () => {
     fetchProduct();
   }, []);
 
+  if (error)
+    return (
+      <div className="h-full">
+        Error fetching product. Verify product id? {error}
+      </div>
+    );
+
   return (
-    <div className="h-full">
+    <div className="h-full relative">
       {isLoading ? (
         <Spinner />
       ) : (
@@ -50,7 +57,7 @@ export const ProductPage = () => {
           <h3>{productData?.category}</h3>
           <h2>{productData?.price}</h2>
           <p>{productData?.description}</p>
-          <img src={productData?.image}></img>
+          <img src={productData?.image} className="left-0 top-0"></img>
         </>
       )}
       {error && <h1>{error}</h1>}
