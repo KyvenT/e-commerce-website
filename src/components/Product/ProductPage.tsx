@@ -45,23 +45,17 @@ export const ProductPage = () => {
       </div>
     );
 
+  if (isLoading) return <Spinner />;
+
   return (
     <div className="h-full relative">
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <>
-          <h1>
-            Product {productId} {productData?.title}
-          </h1>
-          <h3>{productData?.category}</h3>
-          <h2>{productData?.price}</h2>
-          <p>{productData?.description}</p>
-          <img src={productData?.image} className="left-0 top-0"></img>
-        </>
-      )}
-      {error && <h1>{error}</h1>}
-      <p></p>
+      <h1>
+        Product {productId} {productData?.title}
+      </h1>
+      <h3>{productData?.category}</h3>
+      <h2>{productData?.price}</h2>
+      <p>{productData?.description}</p>
+      <img src={productData?.image} className="left-0 top-0"></img>
     </div>
   );
 };

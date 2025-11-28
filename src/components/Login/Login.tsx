@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { useRef, useState } from "react";
 import { Spinner } from "../ui/shadcn-io/spinner";
 import { useNavigate } from "react-router";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 /*
  * sample FakeStoreAPI user credentials
@@ -17,6 +18,7 @@ export const Login = () => {
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const { handleLogIn } = useAuthContext();
 
   const handleShowPasswordClick = () => {
     setIsShowingPassword((prev) => !prev);
@@ -27,6 +29,8 @@ export const Login = () => {
 
     const username = usernameInputRef.current?.value;
     const password = passwordInputRef.current?.value;
+
+    if (!username || !password) return;
 
     try {
       const data = await fetch("https://fakestoreapi.com/auth/login", {
@@ -40,7 +44,8 @@ export const Login = () => {
       }
       const result = await data.json();
       console.log(result.token);
-      // store token in context/cookie later
+      handleLogIn({ username, token: result.token });
+      // store token in cookie later
       navigate("/store");
     } catch (err) {
       if (err instanceof Error) setLoginError(err.message);

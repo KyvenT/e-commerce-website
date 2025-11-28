@@ -2,7 +2,6 @@ import type React from "react";
 import { createContext, useState } from "react";
 
 export type UserAuth = {
-  userId: string;
   username: string;
   token: string;
 };
@@ -31,7 +30,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     setUser(null);
   };
 
-  const isLoggedIn = !!user?.userId;
+  const isLoggedIn = !!user?.token;
 
   return (
     <AuthContext.Provider
