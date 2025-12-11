@@ -6,6 +6,7 @@ import { Login } from "../components/Login/Login";
 import { LandingLayout } from "@/components/Landing/layout/LandingLayout";
 import { ContactUs } from "@/components/Landing/ContactUs";
 import { ProductPage } from "@/components/Product/ProductPage";
+import { StoreLayout } from "@/components/Store/StoreLayout";
 
 export const Router = () => {
   return (
@@ -15,7 +16,7 @@ export const Router = () => {
           <Route index element={<Landing />} />
           <Route path="contact-us" element={<ContactUs />} />
         </Route>
-        <Route path="store">
+        <Route path="store" element={<StoreLayout />}>
           <Route index element={<Store />}></Route>
           <Route path=":productId" element={<ProductPage />} />
         </Route>

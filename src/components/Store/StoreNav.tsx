@@ -1,6 +1,5 @@
-import { Cat, LogIn, Menu } from "lucide-react";
-import { Button } from "../../ui/button";
-import { LandingNavLink } from "./LandingNavLink";
+import { Cat, Menu, ShoppingCart } from "lucide-react";
+import { Button } from "../ui/button";
 import { NavLink } from "react-router";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
@@ -11,12 +10,12 @@ type DisplayURL = {
 };
 
 const linkURLs: DisplayURL[] = [
-  { display: "Our Brand", url: "" },
-  { display: "Store", url: "/store" },
-  { display: "Contact Us", url: "/contact-us" },
+  { display: "Category 1", url: "/store" },
+  { display: "Category 2", url: "/store" },
+  { display: "Category 3", url: "/store" },
 ];
 
-export const LandingNav = () => {
+export const StoreNav = () => {
   const isMobile = useIsMobile();
   const [displayMobileNav, setDisplayMobileNav] = useState<boolean>(false);
 
@@ -37,19 +36,19 @@ export const LandingNav = () => {
       )}
       {(!isMobile || displayMobileNav) && (
         <div className="bg-white gap-[8px] w-[80%] md:w-[100%] absolute md:[static] top-0 right-0 md:static flex flex-col md:flex-row items-center">
-          <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-evenly wrap-normal">
+          <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-around wrap-normal">
             {linkURLs.map((link) => (
               <li key={link.url}>
                 <h2 className="hover:underline decoration-1">
-                  <LandingNavLink to={link.url}>{link.display}</LandingNavLink>
+                  <NavLink to={link.url}>{link.display}</NavLink>
                 </h2>
               </li>
             ))}
           </ul>
           <div>
             <Button>
-              <NavLink className="flex items-center gap-1" to="/login">
-                Log In <LogIn />
+              <NavLink className="flex items-center gap-1" to="/cart">
+                Cart <ShoppingCart />
               </NavLink>
             </Button>
           </div>
