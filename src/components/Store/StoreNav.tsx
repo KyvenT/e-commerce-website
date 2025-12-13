@@ -1,6 +1,7 @@
 import {
   Cat,
   CircleChevronDown,
+  LogIn,
   LogOut,
   Menu,
   ShoppingCart,
@@ -9,6 +10,7 @@ import { Button } from "../ui/button";
 import { NavLink } from "react-router";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useState } from "react";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 type DisplayURL = {
   display: React.ReactNode | string;
@@ -47,6 +49,7 @@ export const StoreNav = () => {
   const isMobile = useIsMobile();
   const [displayMobileNav, setDisplayMobileNav] = useState<boolean>(false);
   const [categoriesHovered, setCategoriesHovered] = useState<boolean>(false);
+  const { isLoggedIn } = useAuthContext();
 
   const handleMobileNavBtnClick = () => {
     setDisplayMobileNav((prev) => !prev);
@@ -79,23 +82,47 @@ export const StoreNav = () => {
               </li>
             </ul>
             <div className="flex items-center gap-4">
-              <Button>
-                <NavLink
-                  className="flex items-center gap-1 text-base font-normal"
-                  to="/cart"
-                >
-                  Cart <ShoppingCart />
-                </NavLink>
-              </Button>
-              <Button>
-                <NavLink
-                  className="flex items-center gap-1 text-base font-normal"
-                  to="/logout"
-                >
-                  Log out
-                  <LogOut />
-                </NavLink>
-              </Button>
+              {isLoggedIn ? (
+                <>
+                  <Button>
+                    <NavLink
+                      className="flex items-center gap-1 text-base font-normal"
+                      to="/cart"
+                    >
+                      Cart <ShoppingCart />
+                    </NavLink>
+                  </Button>
+                  <Button>
+                    <NavLink
+                      className="flex items-center gap-1 text-base font-normal"
+                      to="/logout"
+                    >
+                      Log out
+                      <LogOut />
+                    </NavLink>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button>
+                    <NavLink
+                      className="flex items-center gap-1 text-base font-normal"
+                      to="/login"
+                    >
+                      Log In
+                      <LogIn />
+                    </NavLink>
+                  </Button>
+                  <Button>
+                    <NavLink
+                      className="flex items-center gap-1 text-base font-normal"
+                      to="/register"
+                    >
+                      Sign Up
+                    </NavLink>
+                  </Button>
+                </>
+              )}
             </div>
             {displayMobileNav && (
               <Button onClick={handleMobileNavBtnClick}>

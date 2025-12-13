@@ -36,7 +36,11 @@ export const LandingNav = () => {
         </Button>
       )}
       {(!isMobile || displayMobileNav) && (
-        <div className="bg-white gap-[8px] w-[80%] md:w-[100%] absolute md:[static] top-0 right-0 md:static flex flex-col md:flex-row items-center">
+        <div
+          className={`${
+            isMobile ? "bg-white" : "bg-transparent"
+          }  gap-[8px] w-[80%] md:w-[100%] absolute md:[static] top-0 right-0 md:static flex flex-col md:flex-row items-center`}
+        >
           <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-evenly wrap-normal">
             {linkURLs.map((link) => (
               <li key={link.url}>
