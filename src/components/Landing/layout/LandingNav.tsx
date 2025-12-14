@@ -25,7 +25,7 @@ export const LandingNav = () => {
   };
 
   return (
-    <nav className="z-10 sticky top-0 h-[15%] md:h-[10%] w-[100dvw] flex justify-between items-center px-4 py-4 bg-white border border-black text-nowrap">
+    <nav className="z-10 sticky top-0 h-fit w-full flex justify-between items-center p-4 bg-white border border-black text-nowrap">
       <div className="flex items-center gap-1 select-none">
         <Cat className="text-white bg-black" />
         <h1 className="text-lg">Cat Brand</h1>
@@ -36,15 +36,11 @@ export const LandingNav = () => {
         </Button>
       )}
       {(!isMobile || displayMobileNav) && (
-        <div
-          className={`${
-            isMobile ? "bg-white" : "bg-transparent"
-          }  gap-[8px] w-[80%] md:w-[100%] absolute md:[static] top-0 right-0 md:static flex flex-col md:flex-row items-center`}
-        >
-          <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-evenly wrap-normal">
+        <div className="bg-white md:bg-transparent py-4 md:py-0 border-2 md:border-0 gap-4 w-[100%] md:w-[100%] absolute md:[static] top-0 left-0 md:static flex flex-col md:flex-row items-center">
+          <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-24 wrap-normal">
             {linkURLs.map((link) => (
               <li key={link.url}>
-                <h2 className="hover:underline decoration-1">
+                <h2 className="text-lg hover:underline decoration-1">
                   <LandingNavLink to={link.url}>{link.display}</LandingNavLink>
                 </h2>
               </li>
@@ -52,7 +48,10 @@ export const LandingNav = () => {
           </ul>
           <div>
             <Button>
-              <NavLink className="flex items-center gap-1" to="/login">
+              <NavLink
+                className="flex items-center gap-1 text-base font-normal"
+                to="/login"
+              >
                 Log In <LogIn />
               </NavLink>
             </Button>

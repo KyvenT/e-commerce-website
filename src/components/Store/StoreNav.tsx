@@ -57,7 +57,7 @@ export const StoreNav = () => {
 
   return (
     <div onMouseLeave={() => setCategoriesHovered(false)}>
-      <nav className="z-10 sticky top-0 h-[15%] md:h-[10%] w-full flex justify-between items-center px-4 py-4 bg-white border border-black text-nowrap">
+      <nav className="z-10 sticky top-0 h-fit w-full flex justify-between items-center p-4 bg-white border border-black text-nowrap">
         <div className="flex items-center gap-1 select-none">
           <Cat className="text-white bg-black" />
           <h1 className="text-lg">Cat Brand</h1>
@@ -68,17 +68,19 @@ export const StoreNav = () => {
           </Button>
         )}
         {(!isMobile || displayMobileNav) && (
-          <div className="bg-white gap-[8px] w-[80%] md:w-[100%] absolute md:[static] top-0 right-0 md:static flex flex-col md:flex-row items-center">
-            <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-center gap-24 wrap-normal">
+          <div className="bg-white border-1 py-4 md:py-0 md:border-0 gap-4 w-[100%] md:w-[100%] absolute md:[static] top-0 left-0 md:static flex flex-col md:flex-row items-center">
+            <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-24 wrap-normal">
               <li>
                 <NavLink to="/" className="text-lg hover:underline">
                   About
                 </NavLink>
               </li>
-              <li onMouseOver={() => setCategoriesHovered(true)}>
-                <h2 className="text-lg flex items-center gap-1 p-4">
-                  Categories <CircleChevronDown />
-                </h2>
+              <li
+                onMouseOver={() => setCategoriesHovered(true)}
+                onClick={(prev) => setCategoriesHovered(!prev)}
+                className="text-lg flex items-center gap-1 hover:underline"
+              >
+                Categories <CircleChevronDown size="1rem" />
               </li>
             </ul>
             <div className="flex items-center gap-4">

@@ -38,7 +38,7 @@ export const Store = () => {
   }, []);
 
   return (
-    <div>
+    <div className="border border-black h-full">
       <h2>Store</h2>
       {isLoading && <Spinner />}
       {isError && (
