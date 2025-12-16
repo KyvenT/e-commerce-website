@@ -1,6 +1,7 @@
 import {
   Cat,
   CircleChevronDown,
+  CircleChevronUp,
   LogIn,
   LogOut,
   Menu,
@@ -77,11 +78,46 @@ export const StoreNav = () => {
               </li>
               <li
                 onMouseOver={() => setCategoriesHovered(true)}
-                onClick={(prev) => setCategoriesHovered(!prev)}
+                onClick={() => {
+                  setCategoriesHovered((prev) => !prev);
+                }}
                 className="text-lg flex items-center gap-1 hover:underline"
               >
-                Categories <CircleChevronDown size="1rem" />
+                Categories{" "}
+                {categoriesHovered ? (
+                  <CircleChevronUp size="1rem" />
+                ) : (
+                  <CircleChevronDown size="1rem" />
+                )}
               </li>
+              {isMobile && categoriesHovered && (
+                <div className={`w-full flex flex-col items-center gap-6`}>
+                  {categories.map((category, i) => (
+                    <>
+                      <div className="flex-1 flex justify-center">
+                        <div>
+                          <h2 className="font-semibold text-lg pb-2 cursor-default">
+                            {category.display}
+                          </h2>
+                          <ul className="flex flex-col gap-1">
+                            {category.options.map((option) => (
+                              <NavLink
+                                to={option.url}
+                                className="hover:underline"
+                              >
+                                {option.display}
+                              </NavLink>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                      {i !== categories.length - 1 && (
+                        <div className="border-b w-[80%] h-0"></div>
+                      )}
+                    </>
+                  ))}
+                </div>
+              )}
             </ul>
             <div className="flex items-center gap-4">
               {isLoggedIn ? (
@@ -134,8 +170,10 @@ export const StoreNav = () => {
           </div>
         )}
       </nav>
-      {categoriesHovered && (
-        <div className="bg-white w-full border border-black border-t-0 p-4 flex flex-row justify-between">
+      {!isMobile && categoriesHovered && (
+        <div
+          className={`bg-white w-full border border-black p-4 flex flex-row justify-between`}
+        >
           {categories.map((category, i) => (
             <>
               <div className="flex-1 flex justify-center">

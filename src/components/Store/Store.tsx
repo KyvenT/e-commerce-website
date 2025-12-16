@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-import { StoreProductBtn } from "./StoreProduct";
-import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { Spinner } from "../ui/shadcn-io/spinner";
-import { Link } from "react-router";
+import { ProductList } from "./ProductList";
 
 export type StoreProduct = {
   id: number;
@@ -12,6 +10,19 @@ export type StoreProduct = {
   category: string;
   image: string;
 };
+
+export type ProductSaleList = Record<number, { discount: number }>;
+
+const productsOnSale: ProductSaleList = {
+  2: { discount: 0.9 },
+  5: { discount: 0.75 },
+  9: { discount: 0.8 },
+  13: { discount: 0.85 },
+  17: { discount: 0.65 },
+  20: { discount: 0.5 },
+};
+
+const popularProductIds = [1, 4, 7, 12, 15, 18];
 
 export const Store = () => {
   const [items, setItems] = useState<StoreProduct[]>([]);
@@ -37,29 +48,37 @@ export const Store = () => {
     fetchItems();
   }, []);
 
+  const saleProducts = items.filter((item) => !!productsOnSale[item.id]);
+  const popularProducts = items.filter(
+    (item) => !!popularProductIds.find((val) => val === item.id)
+  );
+
+  if (isLoading) return <Spinner />;
+
+  if (isError)
+    return (
+      <div>
+        <h3>Error fetching store items</h3>
+      </div>
+    );
+
   return (
-    <div className="border border-black h-full">
-      <h2>Store</h2>
-      {isLoading && <Spinner />}
-      {isError && (
-        <div>
-          <h3>Error fetching store items</h3>
-        </div>
-      )}
-      {!isLoading && !isError && (
-        <ScrollArea className="w-full whitespace-nowrap">
-          <ul className="flex w-max h-[300px]">
-            {items.map((item) => (
-              <li>
-                <Link to={`/store/${item.id}`}>
-                  <StoreProductBtn item={item} />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <ScrollBar orientation="horizontal" />
-        </ScrollArea>
-      )}
+    <div className="border border-black ">
+      <ProductList
+        products={saleProducts}
+        discounts={productsOnSale}
+        header="Sale"
+      />
+      <ProductList
+        products={popularProducts}
+        discounts={productsOnSale}
+        header="Popular"
+      />
+      <ProductList
+        products={items}
+        discounts={productsOnSale}
+        header="Shop All"
+      />
     </div>
   );
 };

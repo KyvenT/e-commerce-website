@@ -3,15 +3,27 @@ import { Card } from "../ui/card";
 
 type StoreProductProps = {
   item: StoreProduct;
+  discount?: number;
 };
 
-export const StoreProductBtn = ({ item }: StoreProductProps) => {
+export const StoreProductBtn = ({ item, discount }: StoreProductProps) => {
   return (
-    <Card>
-      <div className="w-[200px] flex flex-col items-center">
-        <h4 className="text-l text-center text-wrap">{item.title}</h4>
-        <img src={item.image} className="h-[100px]" />
-        <h2 className="text-3xl">${item.price}</h2>
+    <Card className="rounded-none p-0">
+      <div className="aspect-square h-[400px] p-4 flex flex-col justify-between text-center">
+        <h4 className="text-l text-wrap pb-2">{item.title}</h4>
+        <div className="flex-1 min-h-0 m-auto">
+          <img src={item.image} className="h-full w-full object-contain" />
+        </div>
+        {discount ? (
+          <>
+            <h2 className="text-3xl">
+              <s>${item.price}</s>
+            </h2>
+            <h2 className="text-3xl">${item.price * discount}</h2>
+          </>
+        ) : (
+          <h2 className="text-3xl">${item.price}</h2>
+        )}
         <p>{item.category}</p>
       </div>
     </Card>
