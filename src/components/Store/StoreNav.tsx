@@ -27,22 +27,18 @@ const categories: Category[] = [
   {
     display: "Clothing",
     options: [
-      { display: "Mens", url: "/store/clothing/men" },
-      { display: "Womens", url: "/store/clothing/women" },
-      { display: "Shop All", url: "/store/clothing" },
+      { display: "Mens", url: "/store/category/men's%20clothing" },
+      { display: "Womens", url: "/store/category/women's%20clothing" },
+      { display: "Shop All", url: "/store/category/clothing" },
     ],
   },
   {
-    display: "Jewellery",
-    options: [
-      { display: "Mens", url: "/store/jewellery/men" },
-      { display: "Womens", url: "/store/jewellery/women" },
-      { display: "Shop All", url: "/store/jewellery" },
-    ],
+    display: "Jewelery",
+    options: [{ display: "Shop All", url: "/store/category/jewelery" }],
   },
   {
     display: "Electronics",
-    options: [{ display: "Shop All", url: "/store/electronics" }],
+    options: [{ display: "Shop All", url: "/store/category/electronics" }],
   },
 ];
 

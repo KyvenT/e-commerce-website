@@ -19,7 +19,7 @@ export const ProductList = ({
       <ul className="flex justify-center w-full h-fit gap-8 flex-wrap">
         {products.map((item) => (
           <li>
-            <Link to={`/store/${item.id}`}>
+            <Link to={`/store/product/${item.id}`}>
               <StoreProductBtn
                 item={item}
                 discount={discounts[item.id]?.discount}

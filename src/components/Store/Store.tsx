@@ -13,7 +13,7 @@ export type StoreProduct = {
 
 export type ProductSaleList = Record<number, { discount: number }>;
 
-const productsOnSale: ProductSaleList = {
+export const productsOnSale: ProductSaleList = {
   2: { discount: 0.9 },
   5: { discount: 0.75 },
   9: { discount: 0.8 },
@@ -22,7 +22,7 @@ const productsOnSale: ProductSaleList = {
   20: { discount: 0.5 },
 };
 
-const popularProductIds = [1, 4, 7, 12, 15, 18];
+export const popularProductIds = [1, 4, 7, 12, 15, 18];
 
 export const Store = () => {
   const [items, setItems] = useState<StoreProduct[]>([]);

@@ -7,6 +7,7 @@ import { LandingLayout } from "@/components/Landing/layout/LandingLayout";
 import { ContactUs } from "@/components/Landing/ContactUs";
 import { ProductPage } from "@/components/Product/ProductPage";
 import { StoreLayout } from "@/components/Store/StoreLayout";
+import { CategoryPage } from "@/components/Category/CategoryPage";
 
 export const Router = () => {
   return (
@@ -16,9 +17,10 @@ export const Router = () => {
           <Route index element={<Landing />} />
           <Route path="contact-us" element={<ContactUs />} />
         </Route>
-        <Route path="store" element={<StoreLayout />}>
+        <Route path="/store" element={<StoreLayout />}>
           <Route index element={<Store />}></Route>
-          <Route path=":productId" element={<ProductPage />} />
+          <Route path="/store/product/:productId" element={<ProductPage />} />
+          <Route path="/store/category/:category" element={<CategoryPage />} />
         </Route>
         <Route path="cart" element={<CartPage />} />
         <Route path="login" element={<Login />} />
