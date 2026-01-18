@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Spinner } from "../ui/shadcn-io/spinner";
+import { LandingNav } from "../Landing/layout/LandingNav";
 
 type Product = {
   id: number;
@@ -49,13 +50,14 @@ export const ProductPage = () => {
 
   return (
     <div className="h-full relative">
+      {/* breadcrumbs here, but for now just the h3*/ }
+      <h3>{productData?.category}</h3>
       <h1>
         Product {productId} {productData?.title}
       </h1>
-      <h3>{productData?.category}</h3>
-      <h2>{productData?.price}</h2>
-      <p>{productData?.description}</p>
       <img src={productData?.image} className="left-0 top-0"></img>
+      <p>{productData?.description}</p>
+      <h2>{productData?.price}</h2>
     </div>
   );
 };
