@@ -3,6 +3,15 @@ import { useParams } from "react-router";
 import { NavLink } from "react-router";
 import { Spinner } from "../ui/shadcn-io/spinner";
 import { Button } from "../ui/button";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
+
 
 type Product = {
   id: number;
@@ -49,11 +58,25 @@ export const ProductPage = () => {
 
   if (isLoading) return <Spinner />;
 
-
   return (
     <div className="h-full relative">
-      {/* breadcrumbs here, for now just the h3*/ }
-      <h3 className="text-neutral-800 dark:text-neutral-300 text-sm">{productData?.category}</h3> 
+        <nav aria-label="Breadcrumbs" className="static">
+          <Breadcrumb>
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink href="/Store">Products</BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbPage>{productData?.title}</BreadcrumbPage>
+              </BreadcrumbItem>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </nav>
         <section className="relative grid md:grid-cols-2 md:grid-rows-1 p-5 md:p-10">
           <img src={productData?.image} className="min-w-1/5 max-w-2/5 justify-self-center"></img>
           {/* product information container */}
