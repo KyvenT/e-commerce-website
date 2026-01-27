@@ -78,15 +78,17 @@ export const ProductPage = () => {
           </Breadcrumb>
         </nav>
         <section className="relative grid md:grid-cols-2 md:grid-rows-1 p-5 md:p-10">
-          <img src={productData?.image} className="min-w-1/5 max-w-2/5 justify-self-center"></img>
+          <div className="static">
+          <img src={productData?.image} className="sm:mb-3 min-w-2/5 max-w-3/5 justify-self-center border border-neutral-200 shadow-sm rounded-sm p-1"></img>
+          </div>
           {/* product information container */}
-          <div className="relative **:py-0.5">
-            <h1 className="text-3xl">Product {productId} {productData?.title}</h1>
+          <div className="relative **:py-0.5 flex flex-col justify-center align-middle text-balance">
+            <h1 className="text-3xl text-balance">Product {productId}: {productData?.title}</h1>
             {/* in theory, don't use the dollar sign and actually get a preferred currency, but for now this is what i'm doing */}
-            <h2 className="text-2xl">{"$" + productData?.price}</h2>
-            <p className="text-neutral-800 text-base">{productData?.description}</p>
+            <h2 className="text-2xl text-balance">{"$" + productData?.price}</h2>
+            <p className="text-neutral-800 text-balance">{productData?.description}</p>        
             {/* button container*/}
-            <div className="grid place-content-evenly md:place-content-start gap-y-2 my-2"> 
+            <div className="flex flex-row gap-1.5"> 
               <Button variant="outline">
                 <NavLink
                 className="flex items-center gap-1 text-base font-normal"
