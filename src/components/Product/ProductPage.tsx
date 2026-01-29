@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { NavLink } from "react-router";
 import { Spinner } from "../ui/shadcn-io/spinner";
 import { Button } from "../ui/button";
+import { Footer } from "../custom/footer";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -10,7 +11,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
+import { 
+  Accordion, 
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 
 type Product = {
@@ -21,6 +28,24 @@ type Product = {
   category: string;
   image: string;
 };
+
+const accordionItems = [
+  {
+    value: "item-1",
+    trigger: "What are your shipping options?",
+    content: "Santa's sled"
+  },
+  {
+    value: "item-2",
+    trigger: "What is your return policy?",
+    content: "Leave items on front porch with cookies and milk within 14 days of delivery for a free refund."
+  },
+  {
+    value: "item-3",
+    trigger: "How do I cancel an order?",
+    content: "You can cancel an order through our customer support."
+  },
+]
 
 export const ProductPage = () => {
   const { productId } = useParams();
@@ -60,54 +85,68 @@ export const ProductPage = () => {
 
   return (
     <div className="h-full relative">
-        <nav aria-label="Breadcrumbs" className="static">
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/">Home</BreadcrumbLink>
-              </BreadcrumbItem>
+      <nav aria-label="Breadcrumbs" className="flex place-content-center-safe p-5">
+        <Breadcrumb>
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink href="/Store">Products</BreadcrumbLink>
-              </BreadcrumbItem>
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/Store">Products</BreadcrumbLink>
+            </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{productData?.title}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </nav>
-        <section className="relative grid md:grid-cols-2 md:grid-rows-1 p-5 md:p-10">
-          <div className="static">
+            <BreadcrumbItem>
+              <BreadcrumbPage>{productData?.title}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+      </nav>
+      {/*product information container */}
+      <section className="relative grid lg:grid-cols-2 lg:grid-rows-1 p-5 lg:p-5">
+        <div className="static">
           <img src={productData?.image} className="sm:mb-3 min-w-2/5 max-w-3/5 justify-self-center border border-neutral-200 shadow-sm rounded-sm p-1"></img>
-          </div>
-          {/* product information container */}
-          <div className="relative **:py-0.5 flex flex-col justify-center align-middle text-balance">
-            <h1 className="text-3xl text-balance">Product {productId}: {productData?.title}</h1>
-            {/* in theory, don't use the dollar sign and actually get a preferred currency, but for now this is what i'm doing */}
-            <h2 className="text-2xl text-balance">{"$" + productData?.price}</h2>
-            <p className="text-neutral-800 text-balance">{productData?.description}</p>        
-            {/* button container*/}
-            <div className="flex flex-row gap-1.5"> 
-              <Button variant="outline">
-                <NavLink
+        </div>
+        {/* text content */}
+        <div className="relative **:py-0.5 flex flex-col justify-center align-middle text-balance">
+          <h1 className="text-3xl text-balance">Product {productId}: {productData?.title}</h1>
+          {/* in theory, don't use the dollar sign and actually get a preferred currency, but for now this is what i'm doing */}
+          <h2 className="text-2xl text-balance">{"$" + productData?.price}</h2>
+          <p className="text-neutral-800 text-balance">{productData?.description}</p>        
+          {/* button container*/}
+          <div className="flex flex-row gap-1.5"> 
+            <Button variant="outline">
+              <NavLink
+              className="flex items-center gap-1 text-base font-normal"
+              to="/cart"
+              >
+              Add to cart
+              </NavLink>
+            </Button>
+             <Button variant="outline" className="bg-teal-500 hover:bg-teal-700 hover:text-neutral-50 text-neutral-50">
+              <NavLink
                 className="flex items-center gap-1 text-base font-normal"
-                to="/cart"
-                >
-                Add to cart
-                </NavLink>
-              </Button>
-              <Button variant="outline" className="bg-teal-500 hover:bg-teal-700 hover:text-neutral-50 text-neutral-50">
-                <NavLink
-                  className="flex items-center gap-1 text-base font-normal"
-                  to="/login"
-                >
-                Buy now
-                </NavLink>
-              </Button>
-            </div> 
-          </div>
-        </section>
+                to="/login"
+              >
+              Buy now
+              </NavLink>
+            </Button>
+          </div> 
+        </div>
+      </section>
+      {/* accordion container */}
+      <div className="grid md:grid-cols-4 px-10">
+        <Accordion type="multiple" defaultValue={["item-1"]} className="md:col-start-2 md:col-end-4">
+          {accordionItems.map((accordionItems) => 
+            <AccordionItem key={accordionItems.value} value={accordionItems.value}>
+              <AccordionTrigger>{accordionItems.trigger}</AccordionTrigger>
+              <AccordionContent>{accordionItems.content}</AccordionContent>
+            </AccordionItem>
+          )}
+        </Accordion>
+      </div>
+      {/*footer container*/}
+      <Footer />
     </div>
   );
 };
