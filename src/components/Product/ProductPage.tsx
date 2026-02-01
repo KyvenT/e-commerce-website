@@ -135,7 +135,7 @@ export const ProductPage = () => {
         </div>
       </section>
       {/* accordion container */}
-      <div className="flex flex-col grow m-auto w-md md:w-xl lg:w-2xl border border-neutral-200 shadow-sm rounded-sm">
+      <div className="flex flex-col grow m-auto w-xs md:w-xl lg:w-2xl border border-neutral-200 shadow-sm rounded-sm">
         <Accordion type="multiple" defaultValue={["item-1"]} className="p-5">
           {accordionItems.map((accordionItems) => 
             <AccordionItem key={accordionItems.value} value={accordionItems.value}>
