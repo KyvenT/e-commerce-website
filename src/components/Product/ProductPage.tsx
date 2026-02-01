@@ -103,18 +103,18 @@ export const ProductPage = () => {
         </Breadcrumb>
       </nav>
       {/*product information container */}
-      <section className="relative grid lg:grid-cols-2 lg:grid-rows-1 p-5 lg:p-5">
-        <div className="static">
-          <img src={productData?.image} className="sm:mb-3 min-w-2/5 max-w-3/5 justify-self-center border border-neutral-200 shadow-sm rounded-sm p-1"></img>
+      <section className="relative grid lg:grid-cols-2 lg:grid-rows-1 p-5 pt-5 pb-10 lg:pb-20 lg:px-20">
+        <div className="static flex justify-center-safe align-middle lg:justify-end pr-5">
+          <img src={productData?.image} className="sm:mb-3 min-w-2/5 max-w-3/5 border border-neutral-200 shadow-sm rounded-sm p-1"></img>
         </div>
         {/* text content */}
-        <div className="relative **:py-0.5 flex flex-col justify-center align-middle text-balance">
-          <h1 className="text-3xl text-balance">Product {productId}: {productData?.title}</h1>
+        <div className="relative **:py-0.5 flex flex-col pt-10 lg:pt-0 justify-center-safe align-middle px-2">
+          <h1 className="text-3xl lg:text-balance">Product {productId}: {productData?.title}</h1>
           {/* in theory, don't use the dollar sign and actually get a preferred currency, but for now this is what i'm doing */}
-          <h2 className="text-2xl text-balance">{"$" + productData?.price}</h2>
-          <p className="text-neutral-800 text-balance">{productData?.description}</p>        
+          <h2 className="text-2xl text-left">{"$" + productData?.price}</h2>
+          <p className="text-neutral-800 lg:text-balance lg:mr-30 mb-2">{productData?.description}</p>        
           {/* button container*/}
-          <div className="flex flex-row gap-1.5"> 
+          <div className="flex flex-row gap-2 items-stretch align-middle justify-center-safe lg:justify-start"> 
             <Button variant="outline">
               <NavLink
               className="flex items-center gap-1 text-base font-normal"
@@ -135,8 +135,8 @@ export const ProductPage = () => {
         </div>
       </section>
       {/* accordion container */}
-      <div className="grid md:grid-cols-4 px-10">
-        <Accordion type="multiple" defaultValue={["item-1"]} className="md:col-start-2 md:col-end-4">
+      <div className="flex flex-col grow m-auto w-md md:w-xl lg:w-2xl border border-neutral-200 shadow-sm rounded-sm">
+        <Accordion type="multiple" defaultValue={["item-1"]} className="p-5">
           {accordionItems.map((accordionItems) => 
             <AccordionItem key={accordionItems.value} value={accordionItems.value}>
               <AccordionTrigger>{accordionItems.trigger}</AccordionTrigger>
