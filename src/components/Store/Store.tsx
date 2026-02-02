@@ -50,7 +50,7 @@ export const Store = () => {
 
   const saleProducts = items.filter((item) => !!productsOnSale[item.id]);
   const popularProducts = items.filter(
-    (item) => !!popularProductIds.find((val) => val === item.id)
+    (item) => !!popularProductIds.find((val) => val === item.id),
   );
 
   if (isLoading) return <Spinner />;
@@ -63,7 +63,7 @@ export const Store = () => {
     );
 
   return (
-    <div className="border border-black ">
+    <div className=" border border-black">
       <ProductList
         products={saleProducts}
         discounts={productsOnSale}

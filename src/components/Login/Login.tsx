@@ -55,7 +55,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="h-full flex justify-center items-center">
+    <div className="flex items-center justify-center h-full">
       <div className="border w-[80%] md:w-[50%] lg:w-[25%] p-[16px] flex flex-col items-center gap-[16px]">
         <h1 className="text-3xl select-none py-[20px]">Login</h1>
         <form
@@ -89,7 +89,7 @@ export const Login = () => {
           </div>
           <Button
             type="submit"
-            className="cursor-pointer text-lg active:bg-gray-600"
+            className="active:bg-gray-600 text-lg cursor-pointer"
           >
             Login
           </Button>

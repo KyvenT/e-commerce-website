@@ -13,7 +13,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-
 type Product = {
   id: number;
   title: string;
@@ -33,7 +32,7 @@ export const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         const data = await fetch(
-          "https://fakestoreapi.com/products/" + productId
+          "https://fakestoreapi.com/products/" + productId,
         );
         if (!data.ok) {
           throw new Error("Error fetching items");
@@ -48,7 +47,7 @@ export const ProductPage = () => {
     };
 
     fetchProduct();
-  }, []);
+  }, [productId]);
 
   if (error)
     return (
@@ -60,18 +59,21 @@ export const ProductPage = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="h-full relative">
-      <nav aria-label="Breadcrumbs" className="flex place-content-center-safe p-5">
+    <div className="relative h-full">
+      <nav
+        aria-label="Breadcrumbs"
+        className="place-content-center-safe flex p-5"
+      >
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="/">Home</BreadcrumbLink>
             </BreadcrumbItem>
-              <BreadcrumbSeparator />
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink href="/Store">Products</BreadcrumbLink>
             </BreadcrumbItem>
-              <BreadcrumbSeparator />
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>{productData?.title}</BreadcrumbPage>
             </BreadcrumbItem>
@@ -79,40 +81,48 @@ export const ProductPage = () => {
         </Breadcrumb>
       </nav>
       {/*product information container */}
-      <section className="relative grid lg:grid-cols-2 lg:grid-rows-1 p-5 pt-5 pb-10 lg:pb-20 lg:px-20">
-        <div className="static flex justify-center-safe align-middle lg:justify-end pr-5">
-          <img src={productData?.image} className="sm:mb-3 min-w-2/5 max-w-3/5 border border-neutral-200 shadow-sm rounded-sm p-1"></img>
+      <section className="lg:grid-cols-2 lg:grid-rows-1 lg:pb-20 lg:px-20 relative grid p-5 pt-5 pb-10">
+        <div className="justify-center-safe lg:justify-end static flex pr-5 align-middle">
+          <img
+            src={productData?.image}
+            className="sm:mb-3 min-w-2/5 max-w-3/5 border-neutral-200 p-1 border rounded-sm shadow-sm"
+          ></img>
         </div>
         {/* text content */}
         <div className="relative **:py-0.5 flex flex-col pt-10 lg:pt-0 justify-center-safe align-middle px-2">
-          <h1 className="text-3xl lg:text-balance">Product {productId}: {productData?.title}</h1>
+          <h1 className="lg:text-balance text-3xl">
+            Product {productId}: {productData?.title}
+          </h1>
           {/* in theory, don't use the dollar sign and actually get a preferred currency, but for now this is what i'm doing */}
           <h2 className="text-2xl text-left">{"$" + productData?.price}</h2>
-          <p className="text-neutral-800 lg:text-balance lg:mr-30 mb-2">{productData?.description}</p>        
+          <p className="text-neutral-800 lg:text-balance lg:mr-30 mb-2">
+            {productData?.description}
+          </p>
           {/* button container*/}
-          <div className="flex flex-row gap-2 items-stretch align-middle justify-center-safe lg:justify-start"> 
+          <div className="justify-center-safe lg:justify-start flex flex-row items-stretch gap-2 align-middle">
             <Button variant="outline">
               <NavLink
-              className="flex items-center gap-1 text-base font-normal"
-              to="/cart"
+                className="flex items-center gap-1 text-base font-normal"
+                to="/cart"
               >
-              Add to cart
+                Add to cart
               </NavLink>
             </Button>
-             <Button variant="outline" className="bg-teal-500 hover:bg-teal-700 hover:text-neutral-50 text-neutral-50">
+            <Button
+              variant="outline"
+              className="hover:bg-teal-700 hover:text-neutral-50 text-neutral-50 bg-teal-500"
+            >
               <NavLink
                 className="flex items-center gap-1 text-base font-normal"
                 to="/login"
               >
-              Buy now
+                Buy now
               </NavLink>
             </Button>
-          </div> 
+          </div>
         </div>
       </section>
       <Footer />
     </div>
   );
 };
-
-

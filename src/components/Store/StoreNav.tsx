@@ -54,7 +54,7 @@ export const StoreNav = () => {
 
   return (
     <div onMouseLeave={() => setCategoriesHovered(false)}>
-      <nav className="z-10 sticky top-0 h-fit w-full flex justify-between items-center p-4 bg-white border border-black text-nowrap">
+      <nav className="h-fit text-nowrap sticky top-0 z-10 flex items-center justify-between w-full p-4 bg-white border border-black">
         <div className="flex items-center gap-1 select-none">
           <Cat className="text-white bg-black" />
           <h1 className="text-lg">Cat Brand</h1>
@@ -66,9 +66,9 @@ export const StoreNav = () => {
         )}
         {(!isMobile || displayMobileNav) && (
           <div className="bg-white border-1 py-4 md:py-0 md:border-0 gap-4 w-[100%] md:w-[100%] absolute md:[static] top-0 left-0 md:static flex flex-col md:flex-row items-center">
-            <ul className="w-full flex-1 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-24 wrap-normal">
+            <ul className="md:flex-row md:gap-24 wrap-normal flex flex-col items-center justify-center flex-1 w-full gap-4">
               <li>
-                <NavLink to="/" className="text-lg hover:underline">
+                <NavLink to="/" className="hover:underline text-lg">
                   About
                 </NavLink>
               </li>
@@ -77,7 +77,7 @@ export const StoreNav = () => {
                 onClick={() => {
                   setCategoriesHovered((prev) => !prev);
                 }}
-                className="text-lg flex items-center gap-1 hover:underline"
+                className="hover:underline flex items-center gap-1 text-lg"
               >
                 Categories{" "}
                 {categoriesHovered ? (
@@ -90,9 +90,9 @@ export const StoreNav = () => {
                 <div className={`w-full flex flex-col items-center gap-6`}>
                   {categories.map((category, i) => (
                     <>
-                      <div className="flex-1 flex justify-center">
+                      <div className="flex justify-center flex-1">
                         <div>
-                          <h2 className="font-semibold text-lg pb-2 cursor-default">
+                          <h2 className="pb-2 text-lg font-semibold cursor-default">
                             {category.display}
                           </h2>
                           <ul className="flex flex-col gap-1">
@@ -172,9 +172,9 @@ export const StoreNav = () => {
         >
           {categories.map((category, i) => (
             <>
-              <div className="flex-1 flex justify-center">
+              <div className="flex justify-center flex-1">
                 <div>
-                  <h2 className="font-semibold text-lg pb-2 cursor-default">
+                  <h2 className="pb-2 text-lg font-semibold cursor-default">
                     {category.display}
                   </h2>
                   <ul className="flex flex-col gap-1">
@@ -187,7 +187,7 @@ export const StoreNav = () => {
                 </div>
               </div>
               {i !== categories.length - 1 && (
-                <div className="border-l w-0"></div>
+                <div className="w-0 border-l"></div>
               )}
             </>
           ))}

@@ -15,8 +15,8 @@ export const ProductList = ({
 }: ProductListProps) => {
   return (
     <section className="p-4 text-center">
-      <h2 className="text-lg pb-2">{header}</h2>
-      <ul className="flex justify-center w-full h-fit gap-8 flex-wrap">
+      <h2 className="pb-2 text-lg">{header}</h2>
+      <ul className="h-fit flex flex-wrap justify-center w-full gap-8">
         {products.map((item) => (
           <li>
             <Link to={`/store/product/${item.id}`}>

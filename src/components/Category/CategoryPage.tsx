@@ -14,7 +14,7 @@ export const CategoryPage = () => {
     const fetchItems = async () => {
       try {
         const data = await fetch(
-          `https://fakestoreapi.com/products/category/${category}`
+          `https://fakestoreapi.com/products/category/${category}`,
         );
         if (!data.ok) {
           throw new Error("Error fetching items");

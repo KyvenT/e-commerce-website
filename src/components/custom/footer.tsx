@@ -40,7 +40,7 @@ export const Footer = () => {
     <>
       <div
         ref={accordionHeaderRef}
-        className="flex flex-col grow m-auto w-xs md:w-xl lg:w-2xl border border-neutral-200 shadow-sm rounded-sm"
+        className="grow w-xs md:w-xl lg:w-2xl border-neutral-200 flex flex-col m-auto border rounded-sm shadow-sm"
       >
         <Accordion type="multiple" defaultValue={["item-1"]} className="p-5">
           {accordionItems.map((accordionItems) => (
@@ -56,13 +56,13 @@ export const Footer = () => {
       </div>
       <footer className="flex flex-row gap-1.5 sm:gap-3 md:gap-5 lg:gap-10 grow w-full justify-center-safe pt-20 pb-5">
         <NavLink className="" to="/">
-          <Cat className="text-white bg-black md:h-10 md:w-10 hover:cursor-pointer" />
+          <Cat className="md:h-10 md:w-10 hover:cursor-pointer text-white bg-black" />
         </NavLink>
         <div>
-          <h1 className="pb-1 text-base sm:text-lg md:text-xl text-teal-500">
+          <h1 className="sm:text-lg md:text-xl pb-1 text-base text-teal-500">
             Contact
           </h1>
-          <ul className="flex flex-col gap-1 text-xs/4 sm:text-sm/4 md:text-base/5">
+          <ul className="text-xs/4 sm:text-sm/4 md:text-base/5 flex flex-col gap-1">
             <li>+9 999-999-9999</li>
             <li>emailourshop@shopmail.com</li>
           </ul>
@@ -70,7 +70,7 @@ export const Footer = () => {
         <div>
           <h1
             onClick={handleAdditionalInfoClick}
-            className="pb-1 text-base sm:text-lg md:text-xl text-red-800 hover:cursor-pointer"
+            className="sm:text-lg md:text-xl hover:cursor-pointer pb-1 text-base text-red-800"
           >
             Additional Information
           </h1>

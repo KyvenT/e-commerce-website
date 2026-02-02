@@ -8,11 +8,11 @@ type StoreProductProps = {
 
 export const StoreProductBtn = ({ item, discount }: StoreProductProps) => {
   return (
-    <Card className="rounded-none p-0">
+    <Card className="p-0 rounded-none">
       <div className="aspect-square h-[400px] p-4 flex flex-col justify-between text-center">
         <h4 className="text-l text-wrap pb-2">{item.title}</h4>
         <div className="flex-1 min-h-0 m-auto">
-          <img src={item.image} className="h-full w-full object-contain" />
+          <img src={item.image} className="object-contain w-full h-full" />
         </div>
         {discount ? (
           <>

@@ -1,3 +1,3 @@
 export const ContactUs = () => {
-  return <div className="border-t border-black h-full">Contact Us</div>;
+  return <div className="h-full border-t border-black">Contact Us</div>;
 };
