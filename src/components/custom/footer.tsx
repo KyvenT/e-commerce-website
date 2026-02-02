@@ -1,8 +1,53 @@
 import { Cat } from "lucide-react";
 import { NavLink } from "react-router";
+import { 
+  Accordion, 
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const accordionItems = [
+  {
+    value: "item-1",
+    trigger: "What are your shipping options?",
+    content: "Santa's sled"
+  },
+  {
+    value: "item-2",
+    trigger: "What is your return policy?",
+    content: "Leave items on front porch with cookies and milk within 14 days of delivery for a free refund."
+  },
+  {
+    value: "item-3",
+    trigger: "How do I cancel an order?",
+    content: "You can cancel an order through our customer support."
+  },
+]
+
+const focusButton = document.getElementById('focusButton') as HTMLElement;
+const accordionHeader = document.getElementById('accordionHeader') as HTMLElement;
+if (focusButton && accordionHeader) {
+    focusButton.addEventListener('click', () => {
+        accordionHeader.tabIndex = -1;
+        document.getElementById('accordionHeader')?.focus();
+    });
+}
+
 
 export const Footer = () => {
     return (
+        <>
+        <div id="accordionHeader" className="flex flex-col grow m-auto w-xs md:w-xl lg:w-2xl border border-neutral-200 shadow-sm rounded-sm">
+            <Accordion type="multiple" defaultValue={["item-1"]} className="p-5">
+            {accordionItems.map((accordionItems) => 
+                <AccordionItem key={accordionItems.value} value={accordionItems.value}>
+                <AccordionTrigger>{accordionItems.trigger}</AccordionTrigger>
+                <AccordionContent>{accordionItems.content}</AccordionContent>
+                </AccordionItem>
+            )}
+            </Accordion>
+        </div> 
         <footer className="flex flex-row gap-1.5 sm:gap-3 md:gap-5 lg:gap-10 grow w-full justify-center-safe pt-20 pb-5">
             <NavLink
                 className=""
@@ -10,21 +55,14 @@ export const Footer = () => {
             <Cat className="text-white bg-black md:h-10 md:w-10 hover:cursor-pointer"/>
             </NavLink>
             <div>
-                <h1 className="pb-1 text-base sm:text-lg md:text-xl text-teal-500 hover:cursor-pointer">Contact</h1>
-                <ul className="flex flex-col gap-1 text-xs/4 sm:text-sm/4 md:text-base/5 **:hover:underline">
-                    <li><NavLink
-                        className=""
-                        to="/">+9 999-999-9999
-                    </NavLink></li>
-                    <li><NavLink
-                        className=""
-                        to="/">
-                            emailourshop@shopmail.com
-                    </NavLink></li>
+                <h1 className="pb-1 text-base sm:text-lg md:text-xl text-teal-500">Contact</h1>
+                <ul className="flex flex-col gap-1 text-xs/4 sm:text-sm/4 md:text-base/5">
+                    <li>+9 999-999-9999</li>
+                    <li>emailourshop@shopmail.com</li>
                 </ul>
             </div>
             <div>
-                <h1 className="pb-1 text-base sm:text-lg md:text-xl text-red-800 hover:cursor-pointer">Additional Information</h1>
+                <h1 id="focusButton" className="pb-1 text-base sm:text-lg md:text-xl text-red-800 hover:cursor-pointer">Additional Information</h1>
                 <ul className="grid grid-cols-2 gap-1 text-xs/4 sm:text-sm/4 md:text-base/5 **:hover:underline">
                     <li><NavLink
                         className=""
@@ -56,6 +94,7 @@ export const Footer = () => {
                     </NavLink></li>
                 </ul>
             </div>
-        </footer>    
+        </footer>
+        </>    
     );
 };

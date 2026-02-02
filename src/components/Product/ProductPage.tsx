@@ -12,12 +12,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { 
-  Accordion, 
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 
 type Product = {
@@ -28,24 +22,6 @@ type Product = {
   category: string;
   image: string;
 };
-
-const accordionItems = [
-  {
-    value: "item-1",
-    trigger: "What are your shipping options?",
-    content: "Santa's sled"
-  },
-  {
-    value: "item-2",
-    trigger: "What is your return policy?",
-    content: "Leave items on front porch with cookies and milk within 14 days of delivery for a free refund."
-  },
-  {
-    value: "item-3",
-    trigger: "How do I cancel an order?",
-    content: "You can cancel an order through our customer support."
-  },
-]
 
 export const ProductPage = () => {
   const { productId } = useParams();
@@ -134,18 +110,6 @@ export const ProductPage = () => {
           </div> 
         </div>
       </section>
-      {/* accordion container */}
-      <div className="flex flex-col grow m-auto w-xs md:w-xl lg:w-2xl border border-neutral-200 shadow-sm rounded-sm">
-        <Accordion type="multiple" defaultValue={["item-1"]} className="p-5">
-          {accordionItems.map((accordionItems) => 
-            <AccordionItem key={accordionItems.value} value={accordionItems.value}>
-              <AccordionTrigger>{accordionItems.trigger}</AccordionTrigger>
-              <AccordionContent>{accordionItems.content}</AccordionContent>
-            </AccordionItem>
-          )}
-        </Accordion>
-      </div>
-      {/*footer container*/}
       <Footer />
     </div>
   );
