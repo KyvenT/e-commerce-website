@@ -62,30 +62,30 @@ export const ProductPage = () => {
     <div className="relative h-full">
       <nav
         aria-label="Breadcrumbs"
-        className="place-content-center-safe flex p-5"
+        className="place-content-center-safe flex pt-5 md:py-7"
       >
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="/" className="md:text-base">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink href="/Store">Products</BreadcrumbLink>
+              <BreadcrumbLink href="/Store" className="md:text-base">Products</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>{productData?.title}</BreadcrumbPage>
+              <BreadcrumbPage className="text-neutral-800 hover:text-teal-500 md:text-base">{productData?.title}</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
       </nav>
       {/*product information container */}
-      <section className="lg:grid-cols-2 lg:grid-rows-1 lg:pb-20 lg:px-20 relative grid p-5 pt-5 pb-10">
+      <section className="lg:grid-cols-2 lg:grid-rows-1 lg:pb-30 lg:px-20 relative grid p-5 pt-5 pb-5 md:pb-10">
         <div className="justify-center-safe lg:justify-end static flex pr-5 align-middle">
           <img
             src={productData?.image}
-            className="sm:mb-3 min-w-2/5 max-w-3/5 border-neutral-200 p-1 border rounded-sm shadow-sm"
+            className="sm:mb-3 min-w-2/5 max-w-3/5 border-neutral-200 p-1 border rounded-sm shadow-sm transition-transform hover:scale-105"
           ></img>
         </div>
         {/* text content */}
