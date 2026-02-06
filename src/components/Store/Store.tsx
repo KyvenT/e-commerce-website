@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react";
 import { Spinner } from "../ui/shadcn-io/spinner";
 import { ProductList } from "./ProductList";
+import { Footer } from "../custom/footer.tsx";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 export type StoreProduct = {
   id: number;
@@ -63,7 +72,24 @@ export const Store = () => {
     );
 
   return (
-    <div className=" border border-black">
+    <>
+    <nav
+        aria-label="Breadcrumbs"
+        className="flex p-3 md:p-5 bg-neutral-50 place-content-center-safe"
+      >
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/" className="md:text-base">Home</BreadcrumbLink>
+          </BreadcrumbItem>
+        <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage className="text-neutral-800 md:text-base">Store</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </nav>
+    <div className="pb-5 bg-neutral-50">
       <ProductList
         products={saleProducts}
         discounts={productsOnSale}
@@ -80,5 +106,8 @@ export const Store = () => {
         header="Shop All"
       />
     </div>
+    <hr />
+    <Footer />
+    </>
   );
 };
